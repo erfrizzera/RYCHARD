@@ -53,14 +53,40 @@ jobs:
           cp data/price-monitor/summary.json _site/data/price-monitor/summary.json
           cp data/price-monitor/observations.jsonl _site/data/price-monitor/observations.jsonl
 
+      - name: Check GitHub Pages support
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: |
+          set +e
+          api="https://api.github.com/repos/${GH_REPOSITORY}/pages"
+          headers=(-H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28")
+          status=$(curl -L -sS -o pages.json -w "%{http_code}" "${headers[@]}" "$api")
+          if [ "$status" = "200" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          create_status=$(curl -L -sS -o pages-create.json -w "%{http_code}" -X POST "${headers[@]}" "$api" -d '{"build_type":"workflow"}')
+          if [ "$create_status" = "200" ] || [ "$create_status" = "201" ] || [ "$create_status" = "204" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            cat pages-create.json
+          fi
+
       - name: Configure GitHub Pages
+        if: steps.pages.outputs.enabled == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload dashboard artifact
+        if: steps.pages.outputs.enabled == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
       - name: Deploy dashboard
+        if: steps.pages.outputs.enabled == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
