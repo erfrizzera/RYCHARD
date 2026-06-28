@@ -54,6 +54,7 @@ console.log(
 
 async function loadMonitorItems() {
   const cache = await readJsonFile(itemCachePath, {});
+  const previousLinks = await readPreviousObservationLinks();
   const extraItems = (await readJsonFile(extraItemsPath, { items: [] })).items || [];
   const removedKeys = new Set(
     (await readJsonFile(removedItemsPath, { removedKeys: [] })).removedKeys || [],
@@ -69,7 +70,7 @@ async function loadMonitorItems() {
       segment: classifySegment(item.label, item.query || item.label),
       label: repairEncoding(item.label),
       historicalQty: item.qty ?? 1,
-      link: preview.link || "",
+      link: preview.link || previousLinks.get(item.key) || "",
     });
   }
 
@@ -86,6 +87,18 @@ async function loadMonitorItems() {
   }
 
   return rows;
+}
+
+async function readPreviousObservationLinks() {
+  const links = new Map();
+
+  for (const observation of await readJsonLines(observationsPath)) {
+    if (observation.key && observation.link) {
+      links.set(observation.key, observation.link);
+    }
+  }
+
+  return links;
 }
 
 async function observeItem(item) {
