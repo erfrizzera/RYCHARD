@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-01T15:19:25.662Z",
+  "generatedAt": "2026-07-01T17:28:42.848Z",
   "timeZone": "America/Sao_Paulo",
-  "totalObservations": 1488,
-  "totalRuns": 24,
-  "validRuns": 24,
+  "totalObservations": 1550,
+  "totalRuns": 25,
+  "validRuns": 25,
   "latestRun": {
-    "runId": "2026-07-01T15:18:38.267Z",
-    "observedAt": "2026-07-01T15:18:38.267Z",
+    "runId": "2026-07-01T17:28:08.642Z",
+    "observedAt": "2026-07-01T17:28:08.642Z",
     "localDate": "2026-07-01",
-    "localTime": "12:18:38",
+    "localTime": "14:28:08",
     "dayOfWeek": "Wednesday",
-    "hour": 12,
+    "hour": 14,
     "itemCount": 62,
     "availableCount": 61,
     "unavailableCount": 1,
@@ -52,13 +52,13 @@
     },
     {
       "key": "Wednesday",
-      "observations": 3,
-      "averageBasketTotal": 2999.66,
+      "observations": 4,
+      "averageBasketTotal": 2986.34,
       "minBasketTotal": 2946.38,
       "maxBasketTotal": 3099.01,
-      "standardDeviation": 70.31,
+      "standardDeviation": 65.12,
       "averageUnavailableCount": 1,
-      "averageDiscount": 3.69
+      "averageDiscount": 4.11
     }
   ],
   "byHour": [
@@ -163,6 +163,16 @@
       "averageDiscount": 5.4
     },
     {
+      "key": "14:00",
+      "observations": 2,
+      "averageBasketTotal": 2957.56,
+      "minBasketTotal": 2946.38,
+      "maxBasketTotal": 2968.73,
+      "standardDeviation": 11.17,
+      "averageUnavailableCount": 1.5,
+      "averageDiscount": 5.4
+    },
+    {
       "key": "13:00",
       "observations": 2,
       "averageBasketTotal": 2968.66,
@@ -171,16 +181,6 @@
       "standardDeviation": 40.75,
       "averageUnavailableCount": 0,
       "averageDiscount": 6.08
-    },
-    {
-      "key": "14:00",
-      "observations": 1,
-      "averageBasketTotal": 2968.73,
-      "minBasketTotal": 2968.73,
-      "maxBasketTotal": 2968.73,
-      "standardDeviation": 0,
-      "averageUnavailableCount": 2,
-      "averageDiscount": 5.42
     },
     {
       "key": "03:00",
@@ -335,6 +335,16 @@
       "averageDiscount": 5.37
     },
     {
+      "key": "Wednesday 14:00",
+      "observations": 1,
+      "averageBasketTotal": 2946.38,
+      "minBasketTotal": 2946.38,
+      "maxBasketTotal": 2946.38,
+      "standardDeviation": 0,
+      "averageUnavailableCount": 1,
+      "averageDiscount": 5.37
+    },
+    {
       "key": "Monday 09:00",
       "observations": 1,
       "averageBasketTotal": 2948.4,
@@ -438,6 +448,6 @@
       "averageUnavailableCount": 1,
       "averageDiscount": 5.76
     },
-    "estimatedSavingsVsAverage": 120.73
+    "estimatedSavingsVsAverage": 121.23
   }
 }
